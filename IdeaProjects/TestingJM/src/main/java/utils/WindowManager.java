@@ -12,6 +12,11 @@ public class WindowManager {
         this.driver = driver;
         navigate = driver.navigate();
     }
+
+    public void maximize(){
+        driver.manage().window().maximize();
+    }
+
     public void goBack(){
         navigate.back();
     }
@@ -23,6 +28,7 @@ public class WindowManager {
     public void refreshPage(){
         navigate.refresh();
     }
+
     public void switchToNewTab(){
         ArrayList<String> tabs2 = new ArrayList<> (driver.getWindowHandles());
         driver.switchTo().window(tabs2.get(1));

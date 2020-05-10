@@ -10,9 +10,9 @@ public class TripDetailsPage {
     private By tripTotal = By.xpath("/html/body/main/div/div[2]/section[1]/div/div[2]/div/div[1]/span[2]");
     private By continueBookingButton = By.id("bookButton");
     private By textGuarantee = By.xpath("/html/body/main/div/div[2]/section[1]/div/div[2]/div/div[2]");
+
     public TripDetailsPage(WebDriver driver) {
         this.driver = driver;
-
     }
 
     public boolean checkForTotalMessage(){

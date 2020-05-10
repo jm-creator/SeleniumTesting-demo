@@ -23,6 +23,7 @@ public class BaseTest {
                 10, TimeUnit.SECONDS);
 
         driver.get("https://www.travelocity.com");
+        getWindowManager().maximize();
     }
 
     @AfterTest
