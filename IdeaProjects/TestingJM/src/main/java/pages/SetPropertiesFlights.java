@@ -1,5 +1,6 @@
 package pages;
 
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -11,8 +12,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
 
 
-public class Flights {
-    protected WebDriver driver;
+public class SetPropertiesFlights {
+    private WebDriver driver;
 
     private By flightOrigin = By.id("flight-origin-hp-flight");
     private By flightDestination = By.id("flight-destination-hp-flight");
@@ -27,29 +28,21 @@ public class Flights {
 
 //---------------------------------------------------------------
 
-    public Flights(WebDriver driver) {
+    public SetPropertiesFlights(WebDriver driver) {
         this.driver = driver;
     }
 
     public void completeFlyingData(String flyingFromCity, String departingDay, String flyingToCity, String returningDay) {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
         driver.findElement(flightOrigin).sendKeys(flyingFromCity);
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("aria-option-0")));
         driver.findElement(flightOrigin).sendKeys(Keys.DOWN);
         driver.findElement(flightOrigin).sendKeys(Keys.ENTER);
         driver.findElement(flightDestination).sendKeys(flyingToCity);
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("aria-option-0")));
         driver.findElement(flightDestination).sendKeys(Keys.DOWN);
         driver.findElement(flightDestination).sendKeys(Keys.ENTER);
         driver.findElement(departingBox).click();
-        WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.visibilityOfElementLocated(visibilityDataPickerText));
         int contMonths = 0;
         while (true) {
@@ -63,18 +56,17 @@ public class Flights {
         List<WebElement> allDatesDepartingDatePicker = driver.findElements(allDaysMonthDataPicker);
         for (WebElement ele : allDatesDepartingDatePicker) {
             String date_text = ele.getText();
-            String date[] = date_text.split("\n");
+            String[] date = date_text.split("\n");
             if (date[1].equals(departingDay)) {
                 ele.click();
                 break;
             }
         }
         driver.findElement(returningBox).click();
-
         List<WebElement> allDatesReturningDatePicker = driver.findElements(allDaysMonthsDataPickerReturn);
         for (WebElement ele : allDatesReturningDatePicker) {
             String date_text = ele.getText();
-            String date[] = date_text.split("\n");
+            String[] date = date_text.split("\n");
             if (date[1].equals(returningDay)) {
                 ele.click();
                 break;

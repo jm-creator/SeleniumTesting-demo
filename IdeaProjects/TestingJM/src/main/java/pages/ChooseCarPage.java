@@ -15,7 +15,7 @@ public class ChooseCarPage {
     }
 
     public void selectCar(){
-        WebDriverWait wait = new WebDriverWait(driver,10);
+        WebDriverWait wait = new WebDriverWait(driver,15);
         wait.until(ExpectedConditions.visibilityOfElementLocated(searchResult));
         driver.findElement(selectButton).click();
     }
