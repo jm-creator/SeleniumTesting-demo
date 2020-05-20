@@ -26,9 +26,9 @@ public class BaseTest {
         getWindowManager().maximize();
     }
 
-    @AfterTest
+    @AfterClass
     public void TeardownTest() {
-        // driver.quit();
+         driver.quit();
     }
     public WindowManager getWindowManager(){
         return new WindowManager(driver);

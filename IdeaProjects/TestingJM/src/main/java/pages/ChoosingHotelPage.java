@@ -58,11 +58,11 @@ public class ChoosingHotelPage {
     }
 
     public boolean CheckOrderByPrice() {
-        LOGGER.log(Level.INFO, "order results by price");
+        LOGGER.log(Level.INFO, "order results by price and check order");
         WebDriverWait wait = new WebDriverWait(driver, 20);
         driver.findElement(priceSortButton).click();
         wait.until(ExpectedConditions.elementToBeClickable(price));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ccol")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(price));
         List<String> prices = driver.findElements(price).stream().map(WebElement::getText).collect(Collectors.toList());
         String myRegex = "[^0-9]";
         prices = prices.stream().map(s -> s.replaceAll(myRegex,"")).collect(Collectors.toList());
@@ -75,7 +75,7 @@ public class ChoosingHotelPage {
     public void selectTheFirstResultWith3Stars() {
         driver.findElement(priceSortButton).click();
         WebDriverWait wait = new WebDriverWait(driver, 40);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ccol")));
+        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ccol")));
         wait.until(ExpectedConditions.elementToBeClickable(price));
         List<WebElement> allSearchResults = driver.findElements(hotelSearchResults);
             for (WebElement ele : allSearchResults) {

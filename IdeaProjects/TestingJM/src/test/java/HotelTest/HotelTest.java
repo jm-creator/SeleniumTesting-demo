@@ -17,10 +17,10 @@ public class HotelTest extends BaseTest {
         hotelsPage.clickSearchButton();
     }
 
-    @Test
+    @Test(dependsOnMethods = "setSearchHotelsProperties")
     public void testForDiscountMessage(){
         SearchHotelPage searchHotelPage = new SearchHotelPage(driver);
-        setSearchHotelsProperties();
+       // setSearchHotelsProperties();
         assertTrue(searchHotelPage.checkForDiscountMessage(),"the message is not available");
     }
 }

@@ -16,9 +16,9 @@ public class CruisesTest extends BaseTest {
         cruises.clickSearchButton();
     }
 
-    @Test
+    @Test(dependsOnMethods = "cruiserSetProperties")
     public void resultTest(){
-        cruiserSetProperties();
+       // cruiserSetProperties();
         ChooseCruisePage cruiser = new ChooseCruisePage(driver);
         cruiser.clickOKButton();
         cruiser.verifyPriceIsInAllResults();

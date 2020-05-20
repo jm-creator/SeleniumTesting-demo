@@ -18,6 +18,14 @@ public class FlightsTest extends BaseTest {
     }
 
     @Test(dependsOnMethods = "setFlightSearchProperties")
+    public void check_for_resultOrder_duration_shorter() {
+        //   setFlightSearchProperties();
+        ChooseFlightsPage resultPage = new ChooseFlightsPage(driver);
+        assertTrue(resultPage.sortByDurationSorted(), "The results are not order by Duration");
+    }
+
+
+    @Test(dependsOnMethods = "setFlightSearchProperties")
     public void checks_for_selectButton_FlightsDetailLink_DurationDetail_in_AllResults() {
      //   setFlightSearchProperties();
         ChooseFlightsPage resultPage = new ChooseFlightsPage(driver);
@@ -27,12 +35,6 @@ public class FlightsTest extends BaseTest {
         assertTrue(resultPage.checkForDurationDetailStream(), "The duration detail is not enable on some result ");
     }
 
-    @Test(dependsOnMethods = "setFlightSearchProperties")
-    public void check_for_resultOrder_duration_shorter() {
-     //   setFlightSearchProperties();
-        ChooseFlightsPage resultPage = new ChooseFlightsPage(driver);
-        assertTrue(resultPage.sortByDurationSorted(), "The results are not order by Duration");
-    }
 
     @Test(dependsOnMethods = "setFlightSearchProperties")
     public void selectOptions()  {

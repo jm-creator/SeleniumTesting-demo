@@ -1,0 +1,19 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite verbose="1" name = "Suite1">
+
+    <test name = "exampletest1">
+        <classes>
+            <class name = "FlightsTest.FlightsTest" />
+            <class name="CruisesTest.CruisesTest" />
+            <class name="FlightsTest.FlightsTest" />
+            <class name="flightHoltelTest.FlightHotelCarTest"/>
+            <class name="flightHoltelTest.ErrorMessageTest"/>
+            <class name="HotelTest.HotelTest"/>
+
+        </classes>
+    </test>
+
+
+</suite>

@@ -43,18 +43,21 @@ public class ChooseFlightsPage {
 
     public Boolean checkForSelectButtonStream() {
         List<WebElement> allSearchResults = driver.findElements(eachResult);
+        LOGGER.log(Level.INFO, "checking for select button enabled on all results");
         return  allSearchResults.stream()
                 .allMatch(s -> s.findElement(selectButtonResult).isEnabled());
     }
 
     public Boolean checkForFlightsDetailLinkStream(){
         List<WebElement> allSearchResults = driver.findElements(eachResult);
+        LOGGER.log(Level.INFO, "checking for flights details links enabled on all results");
         return allSearchResults.stream().
                 allMatch(s -> s.findElement(flightsDetailLink).isEnabled());
     }
 
     public Boolean checkForDurationDetailStream(){
         List<WebElement> allSearchResults = driver.findElements(eachResult);
+        LOGGER.log(Level.INFO, "checking for duration details enabled on all results");
         return allSearchResults.stream()
                 .allMatch(s -> s.findElement(durationDetail).isEnabled());
     }
@@ -76,7 +79,7 @@ public class ChooseFlightsPage {
                           return s1.replaceAll(myRegex,"");}
                           return s.replaceAll(myRegex,"");})
                 .collect(Collectors.toList());
-        LOGGER.log(Level.INFO, "List of times results"+TimeValueResults);
+        LOGGER.log(Level.INFO, "List of times results sorted by duration time: "+TimeValueResults);
         List<Integer> intList = new ArrayList<>();
         intList.addAll(TimeValueResults.stream()
                 .map(Integer::valueOf).collect(Collectors.toList()));
@@ -88,8 +91,9 @@ public class ChooseFlightsPage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("span.badge.badge-success.badge-notification." +
                 "flights-flexible-change-badge")));
         driver.findElement(firstSelectButton).click();
-        wait.until(ExpectedConditions.elementToBeClickable(firstSecondSelectButton));
-        driver.findElement(firstSecondSelectButton).click();
+      //if the test run on suite below lines must be commented...
+      //  wait.until(ExpectedConditions.elementToBeClickable(firstSecondSelectButton));
+      //  driver.findElement(firstSecondSelectButton).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("span.badge.badge-success.badge-notification." +
                 "flights-flexible-change-badge")));
         List<WebElement> allSearchResults = driver.findElements(eachResult);
