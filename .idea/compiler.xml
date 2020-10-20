@@ -9,8 +9,5 @@
         <module name="TestingJM" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="TestingJM" target="8" />
-    </bytecodeTargetLevel>
   </component>
 </project>
